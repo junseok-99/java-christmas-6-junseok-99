@@ -6,11 +6,16 @@ import christmas.util.validation.ValidationDateOfVisit;
 public class InputView {
 
     public static Integer inputDateOfVisit() {
-        System.out.println(InputMessages.DATE_OF_VISIT.getMessage());
-        String dateOfVisitString = input();
-        ValidationDateOfVisit.validateDateOfVisit(dateOfVisitString);
-        Integer dateOfVisit = Integer.parseInt(dateOfVisitString);
-        return dateOfVisit;
+        try {
+            System.out.println(InputMessages.DATE_OF_VISIT.getMessage());
+            String dateOfVisitString = input();
+            ValidationDateOfVisit.validateDateOfVisit(dateOfVisitString);
+            Integer dateOfVisit = Integer.parseInt(dateOfVisitString);
+            return dateOfVisit;
+        } catch (IllegalArgumentException invalidDateOfVisitException) {
+            System.out.println(invalidDateOfVisitException.getMessage());
+            return inputDateOfVisit();
+        }
     }
 
     private static String input() {
