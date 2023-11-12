@@ -38,6 +38,7 @@ public class InputView {
 
     private static List<String> makeOrders(String orderString) {
         return Stream.of(orderString.split(SplitTypes.ORDER_REGEX, SplitTypes.REMOVE_SPACE_NUMBER))
+                .map(String::trim)
                 .toList();
     }
 

@@ -18,6 +18,7 @@ public class OrderController {
 
     public void run() {
         OutputView.outputPreview(dayOfVisit);
+        OutputView.outputOrders(orderList);
     }
 
     public void initOrder() {
