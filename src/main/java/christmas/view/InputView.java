@@ -1,11 +1,12 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.dto.OrderDTO;
+import christmas.util.SplitTypes;
 import christmas.util.validation.ValidationDateOfVisit;
 import christmas.util.validation.ValidationOrder;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public class InputView {
 
@@ -22,16 +23,22 @@ public class InputView {
         }
     }
 
-    public static List<OrderDTO> inputOrders() {
+    public static List<String> inputOrders() {
         try {
             System.out.println(InputMessages.ORDER.getMessage());
             String orderString = input();
             ValidationOrder.validateOrder(orderString);
-            return null;
+            List<String> orders = makeOrders(orderString);
+            return orders;
         } catch (IllegalArgumentException invalidDateOfVisitException) {
             System.out.println(invalidDateOfVisitException.getMessage());
             return inputOrders();
         }
+    }
+
+    private static List<String> makeOrders(String orderString) {
+        return Stream.of(orderString.split(SplitTypes.ORDER_REGEX, SplitTypes.REMOVE_SPACE_NUMBER))
+                .toList();
     }
 
     private static String input() {
