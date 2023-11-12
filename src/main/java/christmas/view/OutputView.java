@@ -1,7 +1,5 @@
 package christmas.view;
 
-import christmas.domain.order.DayOfVisit;
-import christmas.domain.order.OrderLists;
 import christmas.domain.order.Orders;
 
 public class OutputView {
