@@ -2,11 +2,12 @@ package christmas.domain.event;
 
 import christmas.domain.customer.Customer;
 import christmas.domain.event.discount.Discounts;
-import christmas.domain.order.Orders;
+import christmas.domain.event.presentation.Presentations;
 
 public class Event {
 
     Discounts discounts;
+    Presentations presentations;
 
     public Event() {
         this.discounts = new Discounts();
@@ -14,5 +15,9 @@ public class Event {
 
     public void discount(Customer customer) {
         discounts.discount(customer);
+    }
+
+    public void present(Customer customer) {
+        presentations.present(customer);
     }
 }

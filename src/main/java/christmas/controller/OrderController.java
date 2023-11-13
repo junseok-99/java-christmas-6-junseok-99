@@ -40,6 +40,7 @@ public class OrderController {
         Long totalPrice = customer.getOrders().getBeforeDiscountPrice();
         if (totalPrice >= MIN_ORDER_PRICE) {
             event.discount(customer);
+            event.present(customer);
         }
     }
 
