@@ -17,6 +17,10 @@ public class Customer {
         return orders;
     }
 
+    public void discount(Long discountPrice) {
+        orders.discount(discountPrice);
+    }
+
     public String toDayOfVisitString() {
         return dayOfVisit.toString();
     }
