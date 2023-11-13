@@ -28,6 +28,10 @@ public class OrderLists {
         });
     }
 
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
     @Override
     public String toString() {
         StringBuilder ordersString = new StringBuilder();

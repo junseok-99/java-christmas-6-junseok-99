@@ -21,6 +21,7 @@ public class OrderController {
     public void run() {
         OutputView.outputPreview(orders);
         OutputView.outputOrders(orders);
+        OutputView.outputBeforeDiscountPrice(orders);
     }
 
     private void initRepository() {

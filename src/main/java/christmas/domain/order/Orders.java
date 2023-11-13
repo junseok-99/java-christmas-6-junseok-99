@@ -1,5 +1,7 @@
 package christmas.domain.order;
 
+import java.util.List;
+
 public class Orders {
 
     private OrderLists orderList;
@@ -16,5 +18,9 @@ public class Orders {
 
     public String toDayOfVisitString() {
         return dayOfVisit.toString();
+    }
+
+    public List<Order> getOrderList() {
+        return orderList.getOrderList();
     }
 }

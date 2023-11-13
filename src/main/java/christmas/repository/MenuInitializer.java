@@ -9,41 +9,41 @@ import java.util.Map;
 
 public class MenuInitializer {
 
-    public static void init(Map<String, Integer> menuRepository) {
+    public static void init(Map<String, Long> menuRepository) {
         initAppetizer(menuRepository);
         initMainDish(menuRepository);
         initDesert(menuRepository);
         initBeverage(menuRepository);
     }
 
-    private static void initAppetizer(Map<String, Integer> menuRepository) {
+    private static void initAppetizer(Map<String, Long> menuRepository) {
         for (Appetizer appetizer : Appetizer.values()) {
             String name = appetizer.getName();
-            Integer price = appetizer.getPrice();
+            Long price = appetizer.getPrice();
             menuRepository.put(name, price);
         }
     }
 
-    private static void initMainDish(Map<String, Integer> menuRepository) {
+    private static void initMainDish(Map<String, Long> menuRepository) {
         for (MainDish mainDish : MainDish.values()) {
             String name = mainDish.getName();
-            Integer price = mainDish.getPrice();
+            Long price = mainDish.getPrice();
             menuRepository.put(name, price);
         }
     }
 
-    private static void initDesert(Map<String, Integer> menuRepository) {
+    private static void initDesert(Map<String, Long> menuRepository) {
         for (Desert desert : Desert.values()) {
             String name = desert.getName();
-            Integer price = desert.getPrice();
+            Long price = desert.getPrice();
             menuRepository.put(name, price);
         }
     }
 
-    private static void initBeverage(Map<String, Integer> menuRepository) {
+    private static void initBeverage(Map<String, Long> menuRepository) {
         for (Beverage beverage : Beverage.values()) {
             String name = beverage.getName();
-            Integer price = beverage.getPrice();
+            Long price = beverage.getPrice();
             menuRepository.put(name, price);
         }
     }
