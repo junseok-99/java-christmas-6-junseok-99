@@ -1,5 +1,9 @@
 package christmas.repository.menu;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public enum MainDish {
 
     T_BON_STEAK("티본스테이크", 55_000L),
@@ -13,6 +17,13 @@ public enum MainDish {
     private MainDish(String name, Long price) {
         this.name = name;
         this.price = price;
+    }
+
+    public static boolean contains(String menuName) {
+        Set<String> mainDishSet = Stream.of(MainDish.values())
+                .map(MainDish::getName)
+                .collect(Collectors.toSet());
+        return mainDishSet.contains(menuName);
     }
 
     public String getName() {
