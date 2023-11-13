@@ -1,30 +1,34 @@
 package christmas.domain.benefit;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 public class Benefit {
 
-    private static final String NO_BADGE = "없음";
+    protected static final String NONE_BENEFIT = "없음";
+    private static final Long INITIAL_NUMBER = 0L;
 
-    private BenefitPriceList benefitPriceList;
+    private final Map<BenefitTypes, Long> benefitPriceMap;
     private String badge;
 
     public Benefit() {
-        this.benefitPriceList = new BenefitPriceList();
-        this.badge = NO_BADGE;
+        this.benefitPriceMap = new EnumMap<>(BenefitTypes.class);
+        this.badge = NONE_BENEFIT;
     }
 
-    public void addBenefitPrice(Long benefitPrice) {
-        benefitPriceList.add(benefitPrice);
+    public void putBenefitPrice(BenefitTypes benefitTypes, Long benefitPrice) {
+        benefitPriceMap.put(benefitTypes, benefitPrice);
+    }
+
+    public Long calcTotalBenefitPrice() {
+        Long totalBenefitPrice = INITIAL_NUMBER;
+        for (BenefitTypes benefitTypes : benefitPriceMap.keySet()) {
+            totalBenefitPrice += benefitPriceMap.get(benefitTypes);
+        }
+        return totalBenefitPrice;
     }
 
     public void setBadge(String badge) {
         this.badge = badge;
-    }
-
-    public Long calcTotalBenefitPrice() {
-        return benefitPriceList.calcTotalBenefitPrice();
-    }
-
-    public String getPresentationName() {
-        return benefitPriceList.getPresentationName();
     }
 }

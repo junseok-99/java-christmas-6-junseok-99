@@ -1,47 +1,65 @@
 package christmas.domain.customer;
 
+import christmas.domain.benefit.Benefit;
+import christmas.domain.benefit.BenefitTypes;
+import christmas.domain.benefit.Benefits;
 import christmas.domain.dayofvisit.DayOfVisit;
+import christmas.domain.order.Order;
 import christmas.domain.order.Orders;
+
+import java.util.List;
 
 public class Customer {
 
-    private Orders orders;
+    private Order order;
+    private Benefit benefit;
     private DayOfVisit dayOfVisit;
 
-    public Customer(Orders orders, DayOfVisit dayOfVisit) {
-        this.orders = orders;
+    public Customer(List<String> orders, DayOfVisit dayOfVisit) {
+        this.order = new Orders(orders);
+        this.benefit = new Benefits();
         this.dayOfVisit = dayOfVisit;
     }
 
-    public Orders getOrders() {
-        return orders;
-    }
-
-    public void discount(Long discountPrice) {
-        orders.discount(discountPrice);
-    }
-
-    public void addBenefitPrice(Long benefitPrice) {
-        orders.addBenefitPrice(benefitPrice);
-    }
-
-    public Long calcTotalBenefitPrice() {
-        return orders.calcTotalBenefitPrice();
-    }
-
-    public void setBadge(String badge) {
-        orders.setBadge(badge);
+    public Order getOrder() {
+        return order;
     }
 
     public String toDayOfVisitString() {
         return dayOfVisit.toString();
     }
 
+    public String getPresentationName() {
+        Benefits benefits = (Benefits) getBenefit();
+        return benefits.getPresentationHistoryNames();
+    }
+
+    public Long calcTotalBenefitPrice() {
+        return getBenefit().calcTotalBenefitPrice();
+    }
+
     public Integer getDayOfVisit() {
         return dayOfVisit.getDay();
     }
 
-    public String getPresentationName() {
-        return orders.getPresentationName();
+    public void discount(Long discountPrice) {
+        getOrder().discount(discountPrice);
+    }
+
+    public void putBenefitPrice(BenefitTypes benefitTypes, Long benefitPrice) {
+        getBenefit().putBenefitPrice(benefitTypes, benefitPrice);
+    }
+
+    public void addPresentationHistory(String presentationHistory) {
+        Benefits benefits = (Benefits) getBenefit();
+        benefits.addPresentationHistory(presentationHistory);
+    }
+
+    public void setBadge(String badge) {
+        getBenefit().setBadge(badge);
+    }
+
+    private Benefit getBenefit() {
+        return benefit;
     }
 }

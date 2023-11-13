@@ -1,5 +1,6 @@
 package christmas.domain.event.presentation;
 
+import christmas.domain.benefit.Benefit;
 import christmas.domain.customer.Customer;
 
 public class Badge implements Presentation {
@@ -14,7 +15,7 @@ public class Badge implements Presentation {
 
     @Override
     public Boolean isSatisfyCondition(Customer customer) {
-        Long totalBenefitPrice = customer.calcTotalBenefitPrice();
+        Long totalBenefitPrice = NEGATIVE_NUMBER * customer.calcTotalBenefitPrice();
         if (totalBenefitPrice >= STAR_NUMBER) {
             return true;
         }

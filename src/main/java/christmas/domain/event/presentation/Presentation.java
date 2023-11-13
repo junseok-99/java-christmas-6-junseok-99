@@ -1,5 +1,6 @@
 package christmas.domain.event.presentation;
 
+import christmas.domain.benefit.Benefit;
 import christmas.domain.customer.Customer;
 
 public interface Presentation {

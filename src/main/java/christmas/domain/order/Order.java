@@ -1,12 +1,25 @@
 package christmas.domain.order;
 
-public record Order(String menuName, Integer count) {
+public class Order {
 
-    private static final String SPACE = " ";
-    private static final String NUMBER = "개";
+    private Price price;
 
-    @Override
-    public String toString() {
-        return menuName + SPACE + count + NUMBER;
+    public Order() {
+    }
+
+    protected void setPrice(Long orderedTotalPrice) {
+        price = new Price(orderedTotalPrice);
+    }
+
+    public Long getBeforeDiscountPrice() {
+        return price.getBeforeDiscountPrice();
+    }
+
+    public Long getAfterDiscountPrice() {
+        return price.getAfterDiscountPrice();
+    }
+
+    public void discount(Long discountTotalPrice) {
+        price.discount(discountTotalPrice);
     }
 }

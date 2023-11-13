@@ -1,52 +1,48 @@
 package christmas.domain.order;
 
-import christmas.domain.benefit.Benefit;
+import christmas.repository.MenuRepository;
+import christmas.util.OrderIndices;
+import christmas.util.SplitTypes;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
-public class Orders {
+public class Orders extends Order {
 
-    private OrderList orderList;
-    private Benefit benefit;
+    private static final String LINE_BREAKING = "\n";
 
-    public Orders(OrderList orderList) {
-        this.orderList = orderList;
-        this.benefit = new Benefit();
+    private final List<OrderRecord> orderList = new ArrayList<OrderRecord>();
+
+    public Orders(List<String> orders) {
+        makeOrderList(orders);
+        setPrice(getOrderedTotalPrice());
     }
 
-    public void discount(Long discountRate) {
-        orderList.discount(discountRate);
+    public List<OrderRecord> getOrderList() {
+        return orderList;
     }
 
-    public void addBenefitPrice(Long benefitPrice) {
-        this.benefit.addBenefitPrice(benefitPrice);
+    public Long getOrderedTotalPrice() {
+        return MenuRepository.orderedTotalPrice(orderList);
     }
 
-    public String toOrderListString() {
-        return orderList.toString();
+    @Override
+    public String toString() {
+        StringBuilder ordersString = new StringBuilder();
+        for (OrderRecord order : orderList) {
+            ordersString.append(order.toString()).append(LINE_BREAKING);
+        }
+        return ordersString.toString();
     }
 
-    public List<Order> getOrderList() {
-        return orderList.getOrderList();
-    }
-
-    public Long getBeforeDiscountPrice() {
-        return orderList.getBeforeDiscountPrice();
-    }
-
-    public Long getAfterDiscountPrice() {
-        return orderList.getAfterDiscountPrice();
-    }
-
-    public Long calcTotalBenefitPrice() {
-        return benefit.calcTotalBenefitPrice();
-    }
-
-    public void setBadge(String badge) {
-        benefit.setBadge(badge);
-    }
-
-    public String getPresentationName() {
-        return benefit.getPresentationName();
+    private void makeOrderList(List<String> orders) {
+        orders.stream().forEach(order -> {
+            List<String> menuAndCount = Stream.of(order.split(SplitTypes.MENU_REGEX, SplitTypes.REMOVE_SPACE_NUMBER))
+                    .toList();
+            String menuName = menuAndCount.get(OrderIndices.MENU.getIndex());
+            Integer count = Integer.parseInt(menuAndCount.get(OrderIndices.COUNT.getIndex()));
+            orderList.add(new OrderRecord(menuName, count));
+        });
     }
 }

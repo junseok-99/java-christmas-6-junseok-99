@@ -1,6 +1,8 @@
 package christmas.domain.event.discount;
 
+import christmas.domain.benefit.BenefitTypes;
 import christmas.domain.customer.Customer;
+import christmas.domain.order.OrderRecord;
 import christmas.domain.order.Order;
 import christmas.domain.order.Orders;
 import christmas.repository.menu.MainDish;
@@ -30,19 +32,19 @@ public class WeekEnd implements Discount {
     @Override
     public void discount(Customer customer) {
         Boolean discountCondition = isSatisfyCondition(customer);
-        Long discountPrice = null;
+        Long discountPrice = INITIAL_PRICE;
         if (discountCondition) {
             discountPrice = NEGATIVE_NUMBER * discountMainDish(customer);
             customer.discount(discountPrice);
         }
-        customer.addBenefitPrice(discountPrice);
+        customer.putBenefitPrice(BenefitTypes.WEEKEND, discountPrice);
     }
 
     private Long discountMainDish(Customer customer) {
-        Orders orders = customer.getOrders();
+        Orders orders = (Orders) customer.getOrder();
         Long totalDiscountPrice = INITIAL_PRICE;
-        List<Order> orderList = orders.getOrderList();
-        for (Order order : orderList) {
+        List<OrderRecord> orderList = orders.getOrderList();
+        for (OrderRecord order : orderList) {
             String menuName = order.menuName();
             Long count = (long) order.count();
             if (MainDish.contains(menuName)) {

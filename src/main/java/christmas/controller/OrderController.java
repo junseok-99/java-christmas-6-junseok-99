@@ -3,8 +3,6 @@ package christmas.controller;
 import christmas.domain.customer.Customer;
 import christmas.domain.event.Event;
 import christmas.domain.dayofvisit.DayOfVisit;
-import christmas.domain.order.OrderList;
-import christmas.domain.order.Orders;
 import christmas.repository.MenuRepository;
 import christmas.view.InputView;
 import christmas.view.OutputView;
@@ -31,15 +29,15 @@ public class OrderController {
 
     public void exit() {
         OutputView.outputPreview(customer);
-        OutputView.outputOrders(customer.getOrders());
-        OutputView.outputBeforeDiscountPrice(customer.getOrders());
+        OutputView.outputOrders(customer.getOrder());
+        OutputView.outputBeforeDiscountPrice(customer.getOrder());
         OutputView.outputPresentationMenu(customer);
-        OutputView.outputTotalBenefitPrice(customer);
-        OutputView.outputAfterDiscountPrice(customer.getOrders());
+//        OutputView.outputTotalBenefitPrice(customer);
+//        OutputView.outputAfterDiscountPrice(customer.getOrders());
     }
 
     public void processEvent() {
-        Long totalPrice = customer.getOrders().getBeforeDiscountPrice();
+        Long totalPrice = customer.getOrder().getBeforeDiscountPrice();
         if (totalPrice >= MIN_ORDER_PRICE) {
             event.discount(customer);
             event.present(customer);
@@ -53,8 +51,7 @@ public class OrderController {
     private void initOrder() {
         Integer inputDateOfVisit = InputView.inputDateOfVisit();
         List<String> inputOrders = InputView.inputOrders();
-        OrderList orderList = new OrderList(inputOrders);
-        customer = new Customer(new Orders(orderList), new DayOfVisit(inputDateOfVisit));
+        customer = new Customer(inputOrders, new DayOfVisit(inputDateOfVisit));
     }
 
     private void initEvent() {

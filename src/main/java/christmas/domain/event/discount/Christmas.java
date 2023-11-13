@@ -1,5 +1,6 @@
 package christmas.domain.event.discount;
 
+import christmas.domain.benefit.BenefitTypes;
 import christmas.domain.customer.Customer;
 
 public class Christmas implements Discount {
@@ -28,11 +29,11 @@ public class Christmas implements Discount {
     @Override
     public void discount(Customer customer) {
         Boolean discountCondition = isSatisfyCondition(customer);
-        Long discountPrice = null;
+        Long discountPrice = INITIAL_PRICE;
         if (discountCondition) {
             discountPrice = NEGATIVE_NUMBER * discountRate(customer);
             customer.discount(discountPrice);
         }
-        customer.addBenefitPrice(discountPrice);
+        customer.putBenefitPrice(BenefitTypes.CHRISTMAS, discountPrice);
     }
 }

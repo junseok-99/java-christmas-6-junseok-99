@@ -1,7 +1,8 @@
 package christmas.domain.event.presentation;
 
+import christmas.domain.benefit.BenefitTypes;
 import christmas.domain.customer.Customer;
-import christmas.domain.order.Orders;
+import christmas.domain.order.Order;
 import christmas.repository.menu.Beverage;
 
 public class Champagne implements Presentation {
@@ -10,8 +11,8 @@ public class Champagne implements Presentation {
 
     @Override
     public Boolean isSatisfyCondition(Customer customer) {
-        Orders orders = customer.getOrders();
-        Long beforeDiscountPrice = orders.getBeforeDiscountPrice();
+        Order order = customer.getOrder();
+        Long beforeDiscountPrice = order.getBeforeDiscountPrice();
         if (beforeDiscountPrice >= MIN_PRICE) {
             return true;
         }
@@ -25,6 +26,6 @@ public class Champagne implements Presentation {
         if (presentCondition) {
             champagnePrice = NEGATIVE_NUMBER * Beverage.CHAMPAGNE.getPrice();
         }
-        customer.addBenefitPrice(champagnePrice);
+        customer.putBenefitPrice(BenefitTypes.CHAMPAGNE, champagnePrice);
     }
 }
