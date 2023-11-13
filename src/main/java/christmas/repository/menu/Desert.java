@@ -2,13 +2,13 @@ package christmas.repository.menu;
 
 public enum Desert {
 
-    CHOCOLATE_CAKE("초코케이크", 15_000),
-    ICE_CREAM("아이스크림", 5_000);
+    CHOCOLATE_CAKE("초코케이크", 15_000L),
+    ICE_CREAM("아이스크림", 5_000L);
 
     private final String name;
-    private final Integer price;
+    private final Long price;
 
-    private Desert(String name, Integer price) {
+    private Desert(String name, Long price) {
         this.name = name;
         this.price = price;
     }
@@ -17,7 +17,7 @@ public enum Desert {
         return name;
     }
 
-    public Integer getPrice() {
+    public Long getPrice() {
         return price;
     }
 }
