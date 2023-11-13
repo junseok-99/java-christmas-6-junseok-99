@@ -8,6 +8,7 @@ public enum OutputMessages {
     BEFORE_PRICE("<할인 전 총주문 금액>"),
     PRESENTATION_MENU("<증정 메뉴>"),
     AFTER_PRICE("<할인 후 예상 결제 금액>"),
+    BENEFIT_HISTORIES("<혜택 내역>"),
     TOTAL_BENEFIT_PRICE("<총혜택 금액>"),
     DECIMAL_FORMAT("###,###원\n");
 

@@ -15,7 +15,7 @@ public class Benefits extends Benefit {
         if (presentationHistoryList.isEmpty()) {
             return NONE_BENEFIT;
         }
-        return String.join("\n", presentationHistoryList);
+        return String.join(LINE_BREAKING, presentationHistoryList);
     }
 
     public void addPresentationHistory(String presentationHistory) {

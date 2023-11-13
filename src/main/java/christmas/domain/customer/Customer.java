@@ -34,6 +34,14 @@ public class Customer {
         return benefits.getPresentationHistoryNames();
     }
 
+    public Long toTotalBenefitPrice() {
+        return getBenefit().toTotalBenefitPrice();
+    }
+
+    public String toBenefitPriceHistoryString() {
+        return getBenefit().toBenefitPriceHistoryString();
+    }
+
     public Long calcTotalBenefitPrice() {
         return getBenefit().calcTotalBenefitPrice();
     }

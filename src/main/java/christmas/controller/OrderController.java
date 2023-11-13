@@ -32,8 +32,9 @@ public class OrderController {
         OutputView.outputOrders(customer.getOrder());
         OutputView.outputBeforeDiscountPrice(customer.getOrder());
         OutputView.outputPresentationMenu(customer);
+        OutputView.outputBenefitPriceHistories(customer);
         OutputView.outputTotalBenefitPrice(customer);
-//        OutputView.outputAfterDiscountPrice(customer.getOrders());
+        OutputView.outputAfterDiscountPrice(customer.getOrder());
     }
 
     public void processEvent() {

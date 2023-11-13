@@ -37,15 +37,21 @@ public class OutputView {
         System.out.println();
     }
 
+    public static void outputBenefitPriceHistories(Customer customer) {
+        String benefitPriceHistoryString = customer.toBenefitPriceHistoryString();
+        System.out.println(OutputMessages.BENEFIT_HISTORIES.getMessage());
+        System.out.println(benefitPriceHistoryString);
+    }
+
     public static void outputTotalBenefitPrice(Customer customer) {
-        Long totalBenefitPrice = customer.calcTotalBenefitPrice();
-        DecimalFormat formatter = new DecimalFormat(OutputMessages.DECIMAL_FORMAT.getMessage());
+        Long totalBenefitPrice = customer.toTotalBenefitPrice();
         System.out.println(OutputMessages.TOTAL_BENEFIT_PRICE.getMessage());
+        DecimalFormat formatter = new DecimalFormat(OutputMessages.DECIMAL_FORMAT.getMessage());
         System.out.println(formatter.format(totalBenefitPrice));
     }
 
-    public static void outputAfterDiscountPrice(Order orders) {
-        Long afterDiscountPrice = orders.getAfterDiscountPrice();
+    public static void outputAfterDiscountPrice(Order order) {
+        Long afterDiscountPrice = order.getAfterDiscountPrice();
         DecimalFormat formatter = new DecimalFormat(OutputMessages.DECIMAL_FORMAT.getMessage());
         System.out.println(OutputMessages.AFTER_PRICE.getMessage());
         System.out.println(formatter.format(afterDiscountPrice));
