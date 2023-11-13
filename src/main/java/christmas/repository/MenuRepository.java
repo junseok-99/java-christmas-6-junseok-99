@@ -15,7 +15,7 @@ public class MenuRepository {
         MenuInitializer.init(menuRepository);
     }
 
-    public static void print() {
-        System.out.println(menuRepository);
+    public static boolean isMenuInRepository(String menuName) {
+        return menuRepository.containsKey(menuName);
     }
 }

@@ -1,10 +1,10 @@
 package christmas;
 
-import christmas.repository.MenuRepository;
+import christmas.controller.OrderController;
 
 public class Application {
     public static void main(String[] args) {
-        MenuRepository.initRepository();
-        MenuRepository.print();
+        OrderController orderController = new OrderController();
+        orderController.run();
     }
 }

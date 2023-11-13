@@ -3,6 +3,7 @@ package christmas.controller;
 import christmas.domain.order.DayOfVisit;
 import christmas.domain.order.OrderLists;
 import christmas.domain.order.Orders;
+import christmas.repository.MenuRepository;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
@@ -13,6 +14,7 @@ public class OrderController {
     Orders orders;
 
     public OrderController() {
+        initRepository();
         initOrder();
     }
 
@@ -21,7 +23,10 @@ public class OrderController {
         OutputView.outputOrders(orders);
     }
 
-    public void initOrder() {
+    private void initRepository() {
+        MenuRepository.initRepository();
+    }
+    private void initOrder() {
         Integer inputDateOfVisit = InputView.inputDateOfVisit();
         List<String> inputOrders = InputView.inputOrders();
         DayOfVisit dayOfVisit = new DayOfVisit(inputDateOfVisit);

@@ -1,5 +1,6 @@
 package christmas.util.validation;
 
+import christmas.repository.MenuRepository;
 import christmas.util.OrderIndices;
 import christmas.util.SplitTypes;
 
@@ -31,6 +32,7 @@ public class ValidationOrder {
                     validateMenuCount(orderString);
                     validateDuplicateMenu(orderString);
                     validateMenuCountSum(orderString);
+                    validateMenuInRepository(orderString);
         });
     }
 
@@ -62,6 +64,13 @@ public class ValidationOrder {
         if (countSum > MAX_MENU_COUNT) {
             initReferences();
             throw new IllegalArgumentException(INVALID_COUNT_SUM_MESSAGE);
+        }
+    }
+
+    public static void validateMenuInRepository(String orderString) {
+        String menuString = getMenu(orderString);
+        if (MenuRepository.isMenuInRepository(menuString) == false) {
+            throw new IllegalArgumentException(INVALID_MESSAGE);
         }
     }
 
