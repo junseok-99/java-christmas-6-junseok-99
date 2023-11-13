@@ -1,14 +1,10 @@
 package christmas;
 
-import christmas.controller.OrderController;
-import christmas.domain.order.OrderLists;
-import christmas.view.InputView;
-
-import java.util.List;
+import christmas.repository.MenuRepository;
 
 public class Application {
     public static void main(String[] args) {
-        OrderController orderController = new OrderController();
-        orderController.run();
+        MenuRepository.initRepository();
+        MenuRepository.print();
     }
 }
