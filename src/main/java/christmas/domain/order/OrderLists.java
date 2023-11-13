@@ -40,6 +40,10 @@ public class OrderLists {
         return price.getBeforeDiscountPrice();
     }
 
+    public Long getAfterDiscountPrice() {
+        return price.getAfterDiscountPrice();
+    }
+
     public void discount(Long discountRate) {
         price.discount(discountRate);
     }

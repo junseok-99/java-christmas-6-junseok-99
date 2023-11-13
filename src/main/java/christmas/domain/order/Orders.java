@@ -32,6 +32,10 @@ public class Orders {
         return orderList.getBeforeDiscountPrice();
     }
 
+    public Long getAfterDiscountPrice() {
+        return orderList.getAfterDiscountPrice();
+    }
+
     public void discount(Long discountRate) {
         orderList.discount(discountRate);
     }

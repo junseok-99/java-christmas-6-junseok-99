@@ -32,6 +32,7 @@ public class OrderController {
         OutputView.outputPreview(orders);
         OutputView.outputOrders(orders);
         OutputView.outputBeforeDiscountPrice(orders.getBeforeDiscountPrice());
+        OutputView.outputAfterDiscountPrice(orders.getAfterDiscountPrice());
     }
 
     public void processEvent() {
