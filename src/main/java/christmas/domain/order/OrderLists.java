@@ -1,5 +1,6 @@
 package christmas.domain.order;
 
+import christmas.repository.MenuRepository;
 import christmas.util.OrderIndices;
 import christmas.util.SplitTypes;
 
@@ -12,10 +13,13 @@ public class OrderLists {
     private static final String LINE_BREAKING = "\n";
 
     private final List<Order> orderList;
+    private final Price price;
 
     public OrderLists(List<String> orders) {
         orderList = new ArrayList<Order>();
         makeOrderList(orders);
+        Long orderedTotalPrice = MenuRepository.orderedTotalPrice(orderList);
+        price = new Price(orderedTotalPrice);
     }
 
     private void makeOrderList(List<String> orders) {
@@ -30,6 +34,14 @@ public class OrderLists {
 
     public List<Order> getOrderList() {
         return orderList;
+    }
+
+    public Long getBeforeDiscountPrice() {
+        return price.getBeforeDiscountPrice();
+    }
+
+    public void discount(Long discountRate) {
+        price.discount(discountRate);
     }
 
     @Override
