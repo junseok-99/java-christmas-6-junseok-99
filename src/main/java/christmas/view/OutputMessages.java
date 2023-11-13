@@ -9,8 +9,7 @@ public enum OutputMessages {
     PRESENTATION_MENU("<증정 메뉴>"),
     AFTER_PRICE("<할인 후 예상 결제 금액>"),
     TOTAL_BENEFIT_PRICE("<총혜택 금액>"),
-    DECIMAL_FORMAT("###,###"),
-    WON("원\n");
+    DECIMAL_FORMAT("###,###원\n");
 
     private final String message;
 

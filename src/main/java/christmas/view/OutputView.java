@@ -25,8 +25,7 @@ public class OutputView {
         Long beforeDiscountPrice = orders.getBeforeDiscountPrice();
         DecimalFormat formatter = new DecimalFormat(OutputMessages.DECIMAL_FORMAT.getMessage());
         System.out.println(OutputMessages.BEFORE_PRICE.getMessage());
-        System.out.print(formatter.format(beforeDiscountPrice));
-        System.out.println(OutputMessages.WON.getMessage());
+        System.out.println(formatter.format(beforeDiscountPrice));
     }
 
     public static void outputPresentationMenu(Customer customer) {
@@ -40,15 +39,13 @@ public class OutputView {
         Long totalBenefitPrice = customer.calcTotalBenefitPrice();
         DecimalFormat formatter = new DecimalFormat(OutputMessages.DECIMAL_FORMAT.getMessage());
         System.out.println(OutputMessages.TOTAL_BENEFIT_PRICE.getMessage());
-        System.out.print(formatter.format(totalBenefitPrice));
-        System.out.println(OutputMessages.WON.getMessage());
+        System.out.println(formatter.format(totalBenefitPrice));
     }
 
     public static void outputAfterDiscountPrice(Orders orders) {
         Long afterDiscountPrice = orders.getAfterDiscountPrice();
         DecimalFormat formatter = new DecimalFormat(OutputMessages.DECIMAL_FORMAT.getMessage());
         System.out.println(OutputMessages.AFTER_PRICE.getMessage());
-        System.out.print(formatter.format(afterDiscountPrice));
-        System.out.println(OutputMessages.WON.getMessage());
+        System.out.println(formatter.format(afterDiscountPrice));
     }
 }
