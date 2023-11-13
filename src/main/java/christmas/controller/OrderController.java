@@ -35,6 +35,7 @@ public class OrderController {
         OutputView.outputBenefitPriceHistories(customer);
         OutputView.outputTotalBenefitPrice(customer);
         OutputView.outputAfterDiscountPrice(customer.getOrder());
+        OutputView.outputEventBadge(customer);
     }
 
     public void processEvent() {

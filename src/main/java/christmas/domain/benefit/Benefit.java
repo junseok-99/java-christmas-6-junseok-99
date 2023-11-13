@@ -52,6 +52,10 @@ public class Benefit {
         return String.join(EMPTY_STRING, benefitPriceHistoryList);
     }
 
+    public String getBadge() {
+        return badge;
+    }
+
     public void setBadge(String badge) {
         this.badge = badge;
     }

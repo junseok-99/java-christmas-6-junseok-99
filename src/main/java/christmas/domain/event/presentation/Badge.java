@@ -1,6 +1,5 @@
 package christmas.domain.event.presentation;
 
-import christmas.domain.benefit.Benefit;
 import christmas.domain.customer.Customer;
 
 public class Badge implements Presentation {
@@ -31,7 +30,7 @@ public class Badge implements Presentation {
     }
 
     private void presentBadge(Customer customer) {
-        Long totalBenefitPrice = customer.calcTotalBenefitPrice();
+        Long totalBenefitPrice = NEGATIVE_NUMBER * customer.calcTotalBenefitPrice();
         if (STAR_NUMBER <= totalBenefitPrice && totalBenefitPrice < TREE_NUMBER) {
             customer.setBadge(STAR_STRING);
         } else if (TREE_NUMBER <= totalBenefitPrice && totalBenefitPrice < SANTA_NUMBER) {

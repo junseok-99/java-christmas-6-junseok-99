@@ -56,4 +56,10 @@ public class OutputView {
         System.out.println(OutputMessages.AFTER_PRICE.getMessage());
         System.out.println(formatter.format(afterDiscountPrice));
     }
+
+    public static void outputEventBadge(Customer customer) {
+        String badge = customer.getBadge();
+        System.out.println(OutputMessages.EVENT_BADGE.getMessage());
+        System.out.println(badge);
+    }
 }

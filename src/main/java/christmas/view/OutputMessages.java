@@ -7,9 +7,10 @@ public enum OutputMessages {
     ORDER_MENUS("<주문 메뉴>"),
     BEFORE_PRICE("<할인 전 총주문 금액>"),
     PRESENTATION_MENU("<증정 메뉴>"),
-    AFTER_PRICE("<할인 후 예상 결제 금액>"),
     BENEFIT_HISTORIES("<혜택 내역>"),
     TOTAL_BENEFIT_PRICE("<총혜택 금액>"),
+    AFTER_PRICE("<할인 후 예상 결제 금액>"),
+    EVENT_BADGE("<12월 이벤트 배지>"),
     DECIMAL_FORMAT("###,###원\n");
 
     private final String message;
