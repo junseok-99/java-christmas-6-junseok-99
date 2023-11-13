@@ -23,4 +23,16 @@ public class Orders {
     public List<Order> getOrderList() {
         return orderList.getOrderList();
     }
+
+    public Integer getDayOfVisit() {
+        return dayOfVisit.getDay();
+    }
+
+    public Long getBeforeDiscountPrice() {
+        return orderList.getBeforeDiscountPrice();
+    }
+
+    public void discount(Long discountRate) {
+        orderList.discount(discountRate);
+    }
 }
