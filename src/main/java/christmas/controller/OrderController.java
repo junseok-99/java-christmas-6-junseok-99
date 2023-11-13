@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.domain.event.Event;
 import christmas.domain.order.DayOfVisit;
 import christmas.domain.order.OrderLists;
 import christmas.domain.order.Orders;
@@ -13,11 +14,13 @@ public class OrderController {
 
     private static final Long MIN_ORDER_PRICE = 10_000L;
 
-    Orders orders;
+    private Orders orders;
+    private Event event;
 
     public OrderController() {
         initRepository();
         initOrder();
+        initEvent();
     }
 
     public void run() {
@@ -34,7 +37,7 @@ public class OrderController {
     public void processEvent() {
         Long totalPrice = orders.getBeforeDiscountPrice();
         if (totalPrice >= MIN_ORDER_PRICE) {
-
+            event.discount(orders);
         }
     }
 
@@ -48,5 +51,9 @@ public class OrderController {
         DayOfVisit dayOfVisit = new DayOfVisit(inputDateOfVisit);
         OrderLists orderList = new OrderLists(inputOrders);
         orders = new Orders(orderList, dayOfVisit);
+    }
+
+    private void initEvent() {
+        event = new Event();
     }
 }
