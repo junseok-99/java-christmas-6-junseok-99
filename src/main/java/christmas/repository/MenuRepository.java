@@ -1,7 +1,6 @@
 package christmas.repository;
 
 import christmas.domain.order.Order;
-import christmas.domain.order.Orders;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,8 +23,7 @@ public class MenuRepository {
         return menuRepository.containsKey(menuName);
     }
 
-    public static Long orderedTotalPrice(Orders orders) {
-        List<Order> orderList = orders.getOrderList();
+    public static Long orderedTotalPrice(List<Order> orderList) {
         Long totalPrice = ZERO;
         for (Order order : orderList) {
             String menuName = order.menuName();

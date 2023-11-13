@@ -21,11 +21,10 @@ public class OutputView {
         System.out.println(orders.toOrderListString());
     }
 
-    public static void outputBeforeDiscountPrice(Orders orders) {
+    public static void outputBeforeDiscountPrice(Long beforeDiscountPrice) {
         DecimalFormat formatter = new DecimalFormat(OutputMessages.DECIMAL_FORMAT.getMessage());
         System.out.println(OutputMessages.BEFORE_PRICE.getMessage());
-        Long totalPrice = MenuRepository.orderedTotalPrice(orders);
-        System.out.print(formatter.format(totalPrice));
+        System.out.print(formatter.format(beforeDiscountPrice));
         System.out.println(OutputMessages.WON.getMessage());
     }
 }
