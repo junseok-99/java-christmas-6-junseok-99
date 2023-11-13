@@ -8,6 +8,10 @@ public class DayOfVisit {
         this.day = day;
     }
 
+    public Integer getDay() {
+        return day;
+    }
+
     @Override
     public String toString() {
         return Integer.toString(day);
