@@ -12,6 +12,8 @@ public class Discounts {
     public Discounts() {
         discountList.add(new Christmas());
         discountList.add(new WeekDay());
+        discountList.add(new WeekEnd());
+        discountList.add(new Special());
     }
 
     public void discount(Customer customer) {
