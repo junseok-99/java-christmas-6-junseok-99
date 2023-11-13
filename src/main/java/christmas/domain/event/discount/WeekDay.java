@@ -31,10 +31,12 @@ public class WeekDay implements Discount {
     @Override
     public void discount(Customer customer) {
         Boolean discountCondition = isSatisfyCondition(customer);
+        Long discountPrice = null;
         if (discountCondition) {
-            Long discountPrice = discountDesert(customer);
+            discountPrice = NEGATIVE_NUMBER * discountDesert(customer);
             customer.discount(discountPrice);
         }
+        customer.addBenefit(discountPrice);
     }
 
     private Long discountDesert(Customer customer) {

@@ -12,6 +12,13 @@ public class Orders {
         this.benefitList = new BenefitList();
     }
 
+    public void discount(Long discountRate) {
+        orderList.discount(discountRate);
+    }
+
+    public void addBenefit(Long benefit) {
+        benefitList.add(benefit);
+    }
     public String toOrderListString() {
         return orderList.toString();
     }
@@ -28,7 +35,5 @@ public class Orders {
         return orderList.getAfterDiscountPrice();
     }
 
-    public void discount(Long discountRate) {
-        orderList.discount(discountRate);
-    }
+
 }

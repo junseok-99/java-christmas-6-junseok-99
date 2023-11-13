@@ -19,6 +19,6 @@ public class Price {
     }
 
     public void discount(Long discountRate) {
-        this.afterDiscountPrice -= discountRate;
+        this.afterDiscountPrice += discountRate;
     }
 }

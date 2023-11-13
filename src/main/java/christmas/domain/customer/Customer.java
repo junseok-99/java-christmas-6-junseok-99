@@ -21,6 +21,10 @@ public class Customer {
         orders.discount(discountPrice);
     }
 
+    public void addBenefit(Long benefit) {
+        orders.addBenefit(benefit);
+    }
+
     public String toDayOfVisitString() {
         return dayOfVisit.toString();
     }

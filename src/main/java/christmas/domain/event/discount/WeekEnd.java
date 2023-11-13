@@ -30,10 +30,12 @@ public class WeekEnd implements Discount {
     @Override
     public void discount(Customer customer) {
         Boolean discountCondition = isSatisfyCondition(customer);
+        Long discountPrice = null;
         if (discountCondition) {
-            Long discountPrice = discountMainDish(customer);
+            discountPrice = NEGATIVE_NUMBER * discountMainDish(customer);
             customer.discount(discountPrice);
         }
+        customer.addBenefit(discountPrice);
     }
 
     private Long discountMainDish(Customer customer) {

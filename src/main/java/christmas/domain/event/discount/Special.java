@@ -26,9 +26,11 @@ public class Special implements Discount {
     @Override
     public void discount(Customer customer) {
         Boolean discountCondition = isSatisfyCondition(customer);
+        Long discountPrice = null;
         if (discountCondition) {
-            Long discountPrice = discountRate(customer);
+            discountPrice = NEGATIVE_NUMBER * discountRate(customer);
             customer.discount(discountPrice);
         }
+        customer.addBenefit(discountPrice);
     }
 }
