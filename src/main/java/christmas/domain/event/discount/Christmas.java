@@ -30,7 +30,7 @@ public class Christmas implements Discount {
         Boolean discountCondition = isSatisfyCondition(orders);
         if (discountCondition) {
             Long discountRate = discountRate(orders);
-            orders.discountPrice(discountRate);
+            orders.discount(discountRate);
         }
     }
 }
