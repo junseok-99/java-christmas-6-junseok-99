@@ -21,8 +21,16 @@ public class Customer {
         orders.discount(discountPrice);
     }
 
-    public void addBenefit(Long benefit) {
-        orders.addBenefit(benefit);
+    public void addBenefitPrice(Long benefitPrice) {
+        orders.addBenefitPrice(benefitPrice);
+    }
+
+    public Long calcTotalBenefitPrice() {
+        return orders.calcTotalBenefitPrice();
+    }
+
+    public void setBadge(String badge) {
+        orders.setBadge(badge);
     }
 
     public String toDayOfVisitString() {
