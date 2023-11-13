@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class OrderLists {
+public class OrderList {
 
     private static final String LINE_BREAKING = "\n";
 
     private final List<Order> orderList;
     private final Price price;
 
-    public OrderLists(List<String> orders) {
+    public OrderList(List<String> orders) {
         orderList = new ArrayList<Order>();
         makeOrderList(orders);
         Long orderedTotalPrice = MenuRepository.orderedTotalPrice(orderList);

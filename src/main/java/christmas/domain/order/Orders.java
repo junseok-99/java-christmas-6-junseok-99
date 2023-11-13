@@ -4,28 +4,20 @@ import java.util.List;
 
 public class Orders {
 
-    private OrderLists orderList;
-    private DayOfVisit dayOfVisit;
+    private OrderList orderList;
+    private BenefitList benefitList;
 
-    public Orders(OrderLists orderList, DayOfVisit dayOfVisit) {
+    public Orders(OrderList orderList) {
         this.orderList = orderList;
-        this.dayOfVisit = dayOfVisit;
+        this.benefitList = new BenefitList();
     }
 
     public String toOrderListString() {
         return orderList.toString();
     }
 
-    public String toDayOfVisitString() {
-        return dayOfVisit.toString();
-    }
-
     public List<Order> getOrderList() {
         return orderList.getOrderList();
-    }
-
-    public Integer getDayOfVisit() {
-        return dayOfVisit.getDay();
     }
 
     public Long getBeforeDiscountPrice() {
