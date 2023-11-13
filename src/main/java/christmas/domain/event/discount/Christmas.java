@@ -33,6 +33,6 @@ public class Christmas implements Discount {
             discountPrice = NEGATIVE_NUMBER * discountRate(customer);
             customer.discount(discountPrice);
         }
-        customer.addBenefit(discountPrice);
+        customer.addBenefitPrice(discountPrice);
     }
 }

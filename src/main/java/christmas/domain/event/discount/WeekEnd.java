@@ -35,7 +35,7 @@ public class WeekEnd implements Discount {
             discountPrice = NEGATIVE_NUMBER * discountMainDish(customer);
             customer.discount(discountPrice);
         }
-        customer.addBenefit(discountPrice);
+        customer.addBenefitPrice(discountPrice);
     }
 
     private Long discountMainDish(Customer customer) {

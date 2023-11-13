@@ -36,7 +36,7 @@ public class WeekDay implements Discount {
             discountPrice = NEGATIVE_NUMBER * discountDesert(customer);
             customer.discount(discountPrice);
         }
-        customer.addBenefit(discountPrice);
+        customer.addBenefitPrice(discountPrice);
     }
 
     private Long discountDesert(Customer customer) {
