@@ -6,7 +6,7 @@ import christmas.repository.menu.Desert;
 
 import java.util.List;
 
-public class WeekDays implements Discount {
+public class WeekDay implements Discount {
 
     private static final Integer SUNDAY = 3;
     private static final Integer WEDNESDAY = 6;
