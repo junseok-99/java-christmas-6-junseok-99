@@ -34,6 +34,7 @@ public class OrderController {
         OutputView.outputOrders(customer.getOrders());
         OutputView.outputBeforeDiscountPrice(customer.getOrders());
         OutputView.outputPresentationMenu(customer);
+        OutputView.outputTotalBenefitPrice(customer);
         OutputView.outputAfterDiscountPrice(customer.getOrders());
     }
 

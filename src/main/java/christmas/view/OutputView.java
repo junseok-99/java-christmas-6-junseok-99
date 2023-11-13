@@ -36,6 +36,14 @@ public class OutputView {
         System.out.println();
     }
 
+    public static void outputTotalBenefitPrice(Customer customer) {
+        Long totalBenefitPrice = customer.calcTotalBenefitPrice();
+        DecimalFormat formatter = new DecimalFormat(OutputMessages.DECIMAL_FORMAT.getMessage());
+        System.out.println(OutputMessages.TOTAL_BENEFIT_PRICE.getMessage());
+        System.out.print(formatter.format(totalBenefitPrice));
+        System.out.println(OutputMessages.WON.getMessage());
+    }
+
     public static void outputAfterDiscountPrice(Orders orders) {
         Long afterDiscountPrice = orders.getAfterDiscountPrice();
         DecimalFormat formatter = new DecimalFormat(OutputMessages.DECIMAL_FORMAT.getMessage());
