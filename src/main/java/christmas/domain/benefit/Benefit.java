@@ -23,4 +23,8 @@ public class Benefit {
     public Long calcTotalBenefitPrice() {
         return benefitPriceList.calcTotalBenefitPrice();
     }
+
+    public String getPresentationName() {
+        return benefitPriceList.getPresentationName();
+    }
 }

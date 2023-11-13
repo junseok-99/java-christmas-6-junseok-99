@@ -11,6 +11,7 @@ public class Event {
 
     public Event() {
         this.discounts = new Discounts();
+        this.presentations = new Presentations();
     }
 
     public void discount(Customer customer) {

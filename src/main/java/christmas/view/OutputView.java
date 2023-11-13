@@ -29,6 +29,13 @@ public class OutputView {
         System.out.println(OutputMessages.WON.getMessage());
     }
 
+    public static void outputPresentationMenu(Customer customer) {
+        String presentationName = customer.getPresentationName();
+        System.out.println(OutputMessages.PRESENTATION_MENU.getMessage());
+        System.out.println(presentationName);
+        System.out.println();
+    }
+
     public static void outputAfterDiscountPrice(Orders orders) {
         Long afterDiscountPrice = orders.getAfterDiscountPrice();
         DecimalFormat formatter = new DecimalFormat(OutputMessages.DECIMAL_FORMAT.getMessage());

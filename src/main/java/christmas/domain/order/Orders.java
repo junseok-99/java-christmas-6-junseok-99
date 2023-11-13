@@ -45,4 +45,8 @@ public class Orders {
     public void setBadge(String badge) {
         benefit.setBadge(badge);
     }
+
+    public String getPresentationName() {
+        return benefit.getPresentationName();
+    }
 }

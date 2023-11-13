@@ -40,4 +40,8 @@ public class Customer {
     public Integer getDayOfVisit() {
         return dayOfVisit.getDay();
     }
+
+    public String getPresentationName() {
+        return orders.getPresentationName();
+    }
 }

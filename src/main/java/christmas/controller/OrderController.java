@@ -33,6 +33,7 @@ public class OrderController {
         OutputView.outputPreview(customer);
         OutputView.outputOrders(customer.getOrders());
         OutputView.outputBeforeDiscountPrice(customer.getOrders());
+        OutputView.outputPresentationMenu(customer);
         OutputView.outputAfterDiscountPrice(customer.getOrders());
     }
 

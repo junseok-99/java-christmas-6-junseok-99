@@ -25,6 +25,6 @@ public class Champagne implements Presentation {
         if (presentCondition) {
             champagnePrice = NEGATIVE_NUMBER * Beverage.CHAMPAGNE.getPrice();
         }
-        customer.addBenefit(champagnePrice);
+        customer.addBenefitPrice(champagnePrice);
     }
 }
