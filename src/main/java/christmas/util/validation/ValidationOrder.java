@@ -1,6 +1,7 @@
 package christmas.util.validation;
 
 import christmas.repository.MenuRepository;
+import christmas.repository.menu.Beverage;
 import christmas.util.OrderIndices;
 import christmas.util.SplitTypes;
 
@@ -19,6 +20,7 @@ public class ValidationOrder {
     private static final String INVALID_COUNT_SUM_MESSAGE = "[ERROR] 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.";
 
     private static Integer countSum = ZERO;
+    private static Boolean beverageFlag = true;
 
     private ValidationOrder() {
 
@@ -28,12 +30,18 @@ public class ValidationOrder {
         Stream.of(ordersString.split(SplitTypes.ORDER_REGEX, SplitTypes.REMOVE_SPACE_NUMBER))
                 .map(String::trim)
                 .forEach(orderString -> {
-                    validateForm(orderString);
-                    validateMenuCount(orderString);
-                    validateDuplicateMenu(orderString);
-                    validateMenuCountSum(orderString);
-                    validateMenuInRepository(orderString);
-        });
+                    validate(orderString);
+                });
+        validateAllBeverage();
+    }
+
+    private static void validate(String orderString) {
+        validateForm(orderString);
+        validateMenuCount(orderString);
+        validateDuplicateMenu(orderString);
+        validateMenuCountSum(orderString);
+        validateMenuInRepository(orderString);
+        accumulateBeverageFlag(orderString);
     }
 
     public static void validateForm(String orderString) {
@@ -74,6 +82,19 @@ public class ValidationOrder {
         }
     }
 
+    public static void validateAllBeverage() {
+        if (beverageFlag) {
+            initReferences();
+            throw new IllegalArgumentException(INVALID_MESSAGE);
+        }
+    }
+
+    private static void accumulateBeverageFlag(String orderString) {
+        String menuString = getMenu(orderString);
+        Boolean isBeverage = Beverage.contains(menuString);
+        beverageFlag &= isBeverage;
+    }
+
     private static Integer getMenuCount(String orderString) {
         String menuCountString = Stream.of(orderString.split(SplitTypes.MENU_REGEX, SplitTypes.REMOVE_SPACE_NUMBER))
                 .toList()
@@ -99,5 +120,6 @@ public class ValidationOrder {
     private static void initReferences() {
         menuSet.clear();
         countSum = ZERO;
+        beverageFlag = true;
     }
 }

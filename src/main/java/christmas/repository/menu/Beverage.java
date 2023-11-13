@@ -1,5 +1,9 @@
 package christmas.repository.menu;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public enum Beverage {
 
     ZERO_COKE("제로콜라", 3_000),
@@ -12,6 +16,13 @@ public enum Beverage {
     private Beverage(String name, Integer price) {
         this.name = name;
         this.price = price;
+    }
+
+    public static boolean contains(String menuName) {
+        Set<String> beverageSet = Stream.of(Beverage.values())
+                .map(Beverage::getName)
+                .collect(Collectors.toSet());
+        return beverageSet.contains(menuName);
     }
 
     public String getName() {
