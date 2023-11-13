@@ -1,8 +1,9 @@
 package christmas.controller;
 
+import christmas.domain.customer.Customer;
 import christmas.domain.event.Event;
-import christmas.domain.order.DayOfVisit;
-import christmas.domain.order.OrderLists;
+import christmas.domain.dayofvisit.DayOfVisit;
+import christmas.domain.order.OrderList;
 import christmas.domain.order.Orders;
 import christmas.repository.MenuRepository;
 import christmas.view.InputView;
@@ -14,7 +15,7 @@ public class OrderController {
 
     private static final Long MIN_ORDER_PRICE = 10_000L;
 
-    private Orders orders;
+    private Customer customer;
     private Event event;
 
     public OrderController() {
@@ -29,16 +30,16 @@ public class OrderController {
     }
 
     public void exit() {
-        OutputView.outputPreview(orders);
-        OutputView.outputOrders(orders);
-        OutputView.outputBeforeDiscountPrice(orders.getBeforeDiscountPrice());
-        OutputView.outputAfterDiscountPrice(orders.getAfterDiscountPrice());
+        OutputView.outputPreview(customer);
+        OutputView.outputOrders(customer.getOrders());
+        OutputView.outputBeforeDiscountPrice(customer.getOrders());
+        OutputView.outputAfterDiscountPrice(customer.getOrders());
     }
 
     public void processEvent() {
-        Long totalPrice = orders.getBeforeDiscountPrice();
+        Long totalPrice = customer.getOrders().getBeforeDiscountPrice();
         if (totalPrice >= MIN_ORDER_PRICE) {
-            event.discount(orders);
+            event.discount(customer);
         }
     }
 
@@ -49,9 +50,8 @@ public class OrderController {
     private void initOrder() {
         Integer inputDateOfVisit = InputView.inputDateOfVisit();
         List<String> inputOrders = InputView.inputOrders();
-        DayOfVisit dayOfVisit = new DayOfVisit(inputDateOfVisit);
-        OrderLists orderList = new OrderLists(inputOrders);
-        orders = new Orders(orderList, dayOfVisit);
+        OrderList orderList = new OrderList(inputOrders);
+        customer = new Customer(new Orders(orderList), new DayOfVisit(inputDateOfVisit));
     }
 
     private void initEvent() {

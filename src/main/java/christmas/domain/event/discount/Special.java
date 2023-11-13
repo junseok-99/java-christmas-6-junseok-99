@@ -1,6 +1,6 @@
 package christmas.domain.event.discount;
 
-import christmas.domain.order.Orders;
+import christmas.domain.customer.Customer;
 
 public class Special implements Discount {
 
@@ -9,8 +9,8 @@ public class Special implements Discount {
     private static final Long SPECIAL_DISCOUNT_RATE = 1_000L;
 
     @Override
-    public Boolean isSatisfyCondition(Orders orders) {
-        Integer dayOfVisit = orders.getDayOfVisit();
+    public Boolean isSatisfyCondition(Customer customer) {
+        Integer dayOfVisit = customer.getDayOfVisit();
         Integer dayOfTheWeek = dayOfVisit % ONE_WEEK;
         if (dayOfVisit == CHRISTMAS || SUNDAY == dayOfTheWeek) {
             return true;
@@ -19,16 +19,16 @@ public class Special implements Discount {
     }
 
     @Override
-    public Long discountRate(Orders orders) {
+    public Long discountRate(Customer customer) {
         return SPECIAL_DISCOUNT_RATE;
     }
 
     @Override
-    public void discount(Orders orders) {
-        Boolean discountCondition = isSatisfyCondition(orders);
+    public void discount(Customer customer) {
+        Boolean discountCondition = isSatisfyCondition(customer);
         if (discountCondition) {
-            Long discountPrice = discountRate(orders);
-            orders.discount(discountPrice);
+            Long discountPrice = discountRate(customer);
+            customer.discount(discountPrice);
         }
     }
 }

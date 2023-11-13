@@ -1,5 +1,6 @@
 package christmas.domain.event.discount;
 
+import christmas.domain.customer.Customer;
 import christmas.domain.order.Order;
 import christmas.domain.order.Orders;
 import christmas.repository.menu.Desert;
@@ -13,8 +14,8 @@ public class WeekDay implements Discount {
     private static final Integer THURSDAY = 0;
 
     @Override
-    public Boolean isSatisfyCondition(Orders orders) {
-        Integer dayOfVisit = orders.getDayOfVisit();
+    public Boolean isSatisfyCondition(Customer customer) {
+        Integer dayOfVisit = customer.getDayOfVisit();
         Integer dayOfTheWeek = dayOfVisit % ONE_WEEK;
         if (dayOfTheWeek == THURSDAY || (SUNDAY <= dayOfTheWeek && dayOfTheWeek <= WEDNESDAY)) {
             return true;
@@ -23,27 +24,28 @@ public class WeekDay implements Discount {
     }
 
     @Override
-    public Long discountRate(Orders orders) {
+    public Long discountRate(Customer customer) {
         return WEEK_DISCOUNT_RATE;
     }
 
     @Override
-    public void discount(Orders orders) {
-        Boolean discountCondition = isSatisfyCondition(orders);
+    public void discount(Customer customer) {
+        Boolean discountCondition = isSatisfyCondition(customer);
         if (discountCondition) {
-            Long discountPrice = discountDesert(orders);
-            orders.discount(discountPrice);
+            Long discountPrice = discountDesert(customer);
+            customer.discount(discountPrice);
         }
     }
 
-    private Long discountDesert(Orders orders) {
+    private Long discountDesert(Customer customer) {
         Long totalDiscountPrice = INITIAL_PRICE;
+        Orders orders = customer.getOrders();
         List<Order> orderList = orders.getOrderList();
         for (Order order : orderList) {
             String menuName = order.menuName();
             Long count = (long) order.count();
             if (Desert.contains(menuName)) {
-                totalDiscountPrice += (count * discountRate(orders));
+                totalDiscountPrice += (count * discountRate(customer));
             }
         }
         return totalDiscountPrice;

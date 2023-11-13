@@ -1,5 +1,6 @@
 package christmas.domain.event;
 
+import christmas.domain.customer.Customer;
 import christmas.domain.event.discount.Discounts;
 import christmas.domain.order.Orders;
 
@@ -11,7 +12,7 @@ public class Event {
         this.discounts = new Discounts();
     }
 
-    public void discount(Orders orders) {
-        discounts.discount(orders);
+    public void discount(Customer customer) {
+        discounts.discount(customer);
     }
 }

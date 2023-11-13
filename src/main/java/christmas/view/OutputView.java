@@ -1,7 +1,7 @@
 package christmas.view;
 
+import christmas.domain.customer.Customer;
 import christmas.domain.order.Orders;
-import christmas.repository.MenuRepository;
 
 import java.text.DecimalFormat;
 
@@ -11,8 +11,8 @@ public class OutputView {
         System.out.println(OutputMessages.INTRO.getMessage());
     }
 
-    public static void outputPreview(Orders orders) {
-        String previewMessage = String.format(OutputMessages.PREVIEW.getMessage(), orders.toDayOfVisitString());
+    public static void outputPreview(Customer customer) {
+        String previewMessage = String.format(OutputMessages.PREVIEW.getMessage(), customer.toDayOfVisitString());
         System.out.println(previewMessage);
     }
 
@@ -21,14 +21,16 @@ public class OutputView {
         System.out.println(orders.toOrderListString());
     }
 
-    public static void outputBeforeDiscountPrice(Long beforeDiscountPrice) {
+    public static void outputBeforeDiscountPrice(Orders orders) {
+        Long beforeDiscountPrice = orders.getBeforeDiscountPrice();
         DecimalFormat formatter = new DecimalFormat(OutputMessages.DECIMAL_FORMAT.getMessage());
         System.out.println(OutputMessages.BEFORE_PRICE.getMessage());
         System.out.print(formatter.format(beforeDiscountPrice));
         System.out.println(OutputMessages.WON.getMessage());
     }
 
-    public static void outputAfterDiscountPrice(Long afterDiscountPrice) {
+    public static void outputAfterDiscountPrice(Orders orders) {
+        Long afterDiscountPrice = orders.getAfterDiscountPrice();
         DecimalFormat formatter = new DecimalFormat(OutputMessages.DECIMAL_FORMAT.getMessage());
         System.out.println(OutputMessages.AFTER_PRICE.getMessage());
         System.out.print(formatter.format(afterDiscountPrice));

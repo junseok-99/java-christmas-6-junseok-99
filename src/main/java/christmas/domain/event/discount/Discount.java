@@ -1,6 +1,6 @@
 package christmas.domain.event.discount;
 
-import christmas.domain.order.Orders;
+import christmas.domain.customer.Customer;
 
 public interface Discount {
 
@@ -8,7 +8,7 @@ public interface Discount {
     Long INITIAL_PRICE = 0L;
     Long WEEK_DISCOUNT_RATE = 2_023L;
 
-    Boolean isSatisfyCondition(Orders orders);
-    Long discountRate(Orders orders);
-    void discount(Orders orders);
+    Boolean isSatisfyCondition(Customer customer);
+    Long discountRate(Customer customer);
+    void discount(Customer customer);
 }

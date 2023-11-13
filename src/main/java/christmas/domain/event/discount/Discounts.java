@@ -1,6 +1,6 @@
 package christmas.domain.event.discount;
 
-import christmas.domain.order.Orders;
+import christmas.domain.customer.Customer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ public class Discounts {
         discountList.add(new WeekDay());
     }
 
-    public void discount(Orders orders) {
-        discountList.stream().forEach(discountItem -> discountItem.discount(orders));
+    public void discount(Customer customer) {
+        discountList.stream().forEach(discountItem -> discountItem.discount(customer));
     }
 }
