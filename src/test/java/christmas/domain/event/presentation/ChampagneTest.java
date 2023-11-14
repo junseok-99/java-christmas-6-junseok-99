@@ -35,6 +35,17 @@ class ChampagneTest {
     }
 
     @Test
+    @DisplayName("샴페인 증정 이벤트가 미적용되는지 테스트한다.")
+    void isSatisfyCondition_2() {
+        List<String> orderList = List.of("티본스테이크-1", "아이스크림-2");
+        Customer customer = new Customer(orderList, new DayOfVisit(3));
+
+        Boolean isSatisfyCondition = champagne.isSatisfyCondition(customer);
+
+        assertFalse(isSatisfyCondition);
+    }
+
+    @Test
     void present() {
     }
 }
