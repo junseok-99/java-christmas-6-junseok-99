@@ -2,7 +2,7 @@ package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.util.SplitTypes;
-import christmas.util.validation.ValidationDateOfVisit;
+import christmas.util.validation.ValidationDayOfVisit;
 import christmas.util.validation.ValidationOrder;
 
 import java.util.List;
@@ -14,7 +14,7 @@ public class InputView {
         try {
             System.out.println(InputMessages.DATE_OF_VISIT.getMessage());
             String dateOfVisitString = input();
-            ValidationDateOfVisit.validateDateOfVisit(dateOfVisitString);
+            ValidationDayOfVisit.validateDayOfVisit(dateOfVisitString);
             Integer dateOfVisit = Integer.parseInt(dateOfVisitString);
             return dateOfVisit;
         } catch (IllegalArgumentException invalidDateOfVisitException) {

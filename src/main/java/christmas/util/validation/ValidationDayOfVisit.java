@@ -1,6 +1,6 @@
 package christmas.util.validation;
 
-public class ValidationDateOfVisit {
+public class ValidationDayOfVisit {
 
     private static final String NUMBER_REGEX = "[0-9]";
     private static final String EMPTY_STRING = "";
@@ -8,11 +8,11 @@ public class ValidationDateOfVisit {
     private static final Integer MAX_DAY = 31;
     private static final String INVALID_MESSAGE = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
 
-    private ValidationDateOfVisit() {
+    private ValidationDayOfVisit() {
 
     }
 
-    public static void validateDateOfVisit(String dateOfVisitString) {
+    public static void validateDayOfVisit(String dateOfVisitString) {
         validateNumeric(dateOfVisitString);
         validateDayRange(dateOfVisitString);
     }
