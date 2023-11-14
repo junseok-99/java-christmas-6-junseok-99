@@ -26,7 +26,19 @@ class BadgeTest {
     @DisplayName("별 배지 부여 이벤트가 적용되는지 테스트한다.")
     void isSatisfyCondition_Star() {
         List<String> orderList = List.of("초코케이크-2", "아이스크림-2");
-        Customer customer = new Customer(orderList, new DayOfVisit(3));
+        Customer customer = new Customer(orderList, new DayOfVisit(4));
+
+        discounts.discount(customer);
+        Boolean isSatisfyCondition = badge.isSatisfyCondition(customer);
+
+        assertTrue(isSatisfyCondition);
+    }
+
+    @Test
+    @DisplayName("트리 배지 부여 이벤트가 적용되는지 테스트한다.")
+    void isSatisfyCondition_Tree() {
+        List<String> orderList = List.of("초코케이크-3", "아이스크림-3");
+        Customer customer = new Customer(orderList, new DayOfVisit(4));
 
         discounts.discount(customer);
         Boolean isSatisfyCondition = badge.isSatisfyCondition(customer);
