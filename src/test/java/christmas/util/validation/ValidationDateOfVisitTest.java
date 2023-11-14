@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ValidationDateOfVisitTest {
 
     @ParameterizedTest
-    @DisplayName("유효한 예상 방문 날짜 인지 테스트한다.")
+    @DisplayName("유효하지 않은 예상 방문 날짜 인지 테스트한다.")
     @ValueSource(strings = { "a", "b3", "0", "32", "102394845", "1a3", " ", " 3 ", "3  "})
     void validateDayOfVisit(String dayOfVisit) {
         IllegalArgumentException invalidDayOfVisitException = assertThrows(IllegalArgumentException.class, () -> {
