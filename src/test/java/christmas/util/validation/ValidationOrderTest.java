@@ -84,8 +84,12 @@ class ValidationOrderTest {
     @DisplayName("총 주문의 개수가 20을 초과하는지 테스트한다.")
     @ValueSource(strings = { "티본스테이크-15,제로콜라-10", "타파스-10,바비큐립-11,", "초코케이크-21", "해산물파스타-100"})
     void validateMenuCountSum(String orderString) {
+        List<String> orderList = Stream.of(orderString.split(SplitTypes.ORDER_REGEX)).toList();
+
         IllegalArgumentException invalidDuplicateMenuException = assertThrows(IllegalArgumentException.class, () -> {
-            ValidationOrder.validateOrder(orderString);
+            for (String order : orderList) {
+                ValidationOrder.validateMenuCountSum(order);
+            }
         });
         assertThat(invalidDuplicateMenuException.getMessage())
                 .isEqualTo("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
