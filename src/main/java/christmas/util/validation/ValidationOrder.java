@@ -17,7 +17,6 @@ public class ValidationOrder {
     private static final Integer MIN_MENU_COUNT = 1;
     private static final Integer MAX_MENU_COUNT = 20;
     private static final String INVALID_MESSAGE = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
-    private static final String INVALID_COUNT_SUM_MESSAGE = "[ERROR] 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.";
 
     private static Integer countSum = ZERO;
     private static Boolean beverageFlag = true;
@@ -70,7 +69,7 @@ public class ValidationOrder {
     public static void validateMenuCountSum(String orderString) {
         countSum += getMenuCount(orderString);
         if (countSum > MAX_MENU_COUNT) {
-            throw new IllegalArgumentException(INVALID_COUNT_SUM_MESSAGE);
+            throw new IllegalArgumentException(INVALID_MESSAGE);
         }
     }
 
