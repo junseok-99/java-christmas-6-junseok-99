@@ -13,7 +13,7 @@ public class Special implements Discount {
     public Boolean isSatisfyCondition(Customer customer) {
         Integer dayOfVisit = customer.getDayOfVisit();
         Integer dayOfTheWeek = dayOfVisit % ONE_WEEK;
-        if (dayOfVisit == CHRISTMAS || SUNDAY == dayOfTheWeek) {
+        if (dayOfVisit.equals(CHRISTMAS) || dayOfTheWeek.equals(SUNDAY)) {
             return true;
         }
         return false;

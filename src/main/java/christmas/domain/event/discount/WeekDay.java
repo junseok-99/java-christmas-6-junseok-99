@@ -19,7 +19,7 @@ public class WeekDay implements Discount {
     public Boolean isSatisfyCondition(Customer customer) {
         Integer dayOfVisit = customer.getDayOfVisit();
         Integer dayOfTheWeek = dayOfVisit % ONE_WEEK;
-        if (dayOfTheWeek == THURSDAY || (SUNDAY <= dayOfTheWeek && dayOfTheWeek <= WEDNESDAY)) {
+        if (dayOfTheWeek.equals(THURSDAY) || (SUNDAY <= dayOfTheWeek && dayOfTheWeek <= WEDNESDAY)) {
             return true;
         }
         return false;
