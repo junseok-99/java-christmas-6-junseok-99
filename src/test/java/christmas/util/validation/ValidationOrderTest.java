@@ -95,8 +95,15 @@ class ValidationOrderTest {
                 .isEqualTo("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 
-    @Test
-    void validateMenuInRepository() {
+    @ParameterizedTest
+    @DisplayName("메뉴판에 없는 메뉴를 주문하는지 테스트한다.")
+    @ValueSource(strings = { "티본스테끼-15,제로콜라-1", "버블티-3,떡볶이-4,", "순대-2, 만두-5", "라면-2"})
+    void validateMenuInRepository(String orderString) {
+        IllegalArgumentException invalidMenuInRepositoryException = assertThrows(IllegalArgumentException.class, () -> {
+            ValidationOrder.validateMenuInRepository(orderString);
+        });
+        assertThat(invalidMenuInRepositoryException.getMessage())
+                .isEqualTo("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 
     @Test
