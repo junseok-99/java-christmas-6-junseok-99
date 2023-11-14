@@ -47,6 +47,18 @@ class BadgeTest {
     }
 
     @Test
+    @DisplayName("산타 배지 부여 이벤트가 적용되는지 테스트한다.")
+    void isSatisfyCondition_Santa() {
+        List<String> orderList = List.of("초코케이크-5", "아이스크림-5");
+        Customer customer = new Customer(orderList, new DayOfVisit(4));
+
+        discounts.discount(customer);
+        Boolean isSatisfyCondition = badge.isSatisfyCondition(customer);
+
+        assertTrue(isSatisfyCondition);
+    }
+
+    @Test
     void present() {
     }
 }
