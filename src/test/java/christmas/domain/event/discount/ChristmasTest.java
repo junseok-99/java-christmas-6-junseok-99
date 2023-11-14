@@ -22,13 +22,27 @@ class ChristmasTest {
     }
 
     @ParameterizedTest
-    @DisplayName("크리스마스 할인 이벤트에 적용되는지 테스트한다.")
+    @DisplayName("크리스마스 디데이 할인에 적용되는지 테스트한다.")
     @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25})
     void isSatisfyCondition(Integer day) {
         List<String> orderList = List.of("타파스-1", "제로콜라-1", "티본스테이크-1", "샴페인-1");
         Customer customer = new Customer(orderList, new DayOfVisit(day));
 
-        assertTrue(christmas.isSatisfyCondition(customer));
+        Boolean isSatisfyCondition = christmas.isSatisfyCondition(customer);
+
+        assertTrue(isSatisfyCondition);
+    }
+
+    @ParameterizedTest
+    @DisplayName("크리스마스 디데이 할인에 적용이 안되는지 테스트한다.")
+    @ValueSource(ints = {-1, 0, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35})
+    void isSatisfyCondition_2(Integer day) {
+        List<String> orderList = List.of("타파스-1", "제로콜라-1", "티본스테이크-1", "샴페인-1");
+        Customer customer = new Customer(orderList, new DayOfVisit(day));
+
+        Boolean isSatisfyCondition = christmas.isSatisfyCondition(customer);
+
+        assertFalse(isSatisfyCondition);
     }
 
     @Test
