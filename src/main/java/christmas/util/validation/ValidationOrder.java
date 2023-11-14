@@ -27,6 +27,7 @@ public class ValidationOrder {
     }
 
     public static void validateOrder(String ordersString) {
+        initReferences();
         Stream.of(ordersString.split(SplitTypes.ORDER_REGEX, SplitTypes.REMOVE_SPACE_NUMBER))
                 .map(String::trim)
                 .forEach(orderString -> {
@@ -61,7 +62,6 @@ public class ValidationOrder {
     public static void validateDuplicateMenu(String orderString) {
         String menuString = getMenu(orderString);
         if (menuSet.contains(menuString)) {
-            initReferences();
             throw new IllegalArgumentException(INVALID_MESSAGE);
         }
         menuSet.add(menuString);
@@ -70,7 +70,6 @@ public class ValidationOrder {
     public static void validateMenuCountSum(String orderString) {
         countSum += getMenuCount(orderString);
         if (countSum > MAX_MENU_COUNT) {
-            initReferences();
             throw new IllegalArgumentException(INVALID_COUNT_SUM_MESSAGE);
         }
     }
@@ -84,7 +83,6 @@ public class ValidationOrder {
 
     public static void validateAllBeverage() {
         if (beverageFlag) {
-            initReferences();
             throw new IllegalArgumentException(INVALID_MESSAGE);
         }
     }
