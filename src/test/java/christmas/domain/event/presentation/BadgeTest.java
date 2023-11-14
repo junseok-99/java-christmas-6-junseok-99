@@ -61,10 +61,24 @@ class BadgeTest {
 
     @Test
     @DisplayName("별 배지가 부여되는지 테스트한다.")
-    void present() {
+    void present_Star() {
         List<String> orderList = List.of("초코케이크-2", "아이스크림-2");
         Customer customer = new Customer(orderList, new DayOfVisit(4));
         String expectedBadge = "별";
+
+        discounts.discount(customer);
+        badge.present(customer);
+        String actualBadge = customer.getBadge();
+
+        Assertions.assertThat(actualBadge).isEqualTo(expectedBadge);
+    }
+
+    @Test
+    @DisplayName("트리 배지가 부여되는지 테스트한다.")
+    void present_Tree() {
+        List<String> orderList = List.of("초코케이크-3", "아이스크림-3");
+        Customer customer = new Customer(orderList, new DayOfVisit(4));
+        String expectedBadge = "트리";
 
         discounts.discount(customer);
         badge.present(customer);
