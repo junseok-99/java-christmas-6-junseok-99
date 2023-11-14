@@ -1,11 +1,9 @@
 package christmas.util.validation;
 
 import christmas.repository.MenuRepository;
-import christmas.util.OrderIndices;
 import christmas.util.SplitTypes;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -106,7 +104,14 @@ class ValidationOrderTest {
                 .isEqualTo("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 
-    @Test
-    void validateAllBeverage() {
+    @ParameterizedTest
+    @DisplayName("음료수만 주문했는지 테스트한다.")
+    @ValueSource(strings = { "제로콜라-1,샴페인-1", "레드와인-3,제로콜라-2,샴페인-4,", "샴페인-2,레드와인-5", "샴페인-2"})
+    void validateAllBeverage(String orderString) {
+        IllegalArgumentException invalidMenuInRepositoryException = assertThrows(IllegalArgumentException.class, () -> {
+            ValidationOrder.validateOrder(orderString);
+        });
+        assertThat(invalidMenuInRepositoryException.getMessage())
+                .isEqualTo("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 }
