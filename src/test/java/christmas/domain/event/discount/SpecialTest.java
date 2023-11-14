@@ -4,6 +4,7 @@ package christmas.domain.event.discount;
 import christmas.domain.customer.Customer;
 import christmas.domain.dayofvisit.DayOfVisit;
 import christmas.repository.MenuRepository;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -46,7 +47,16 @@ class SpecialTest {
     }
 
     @ParameterizedTest
-    void discountRate() {
+    @DisplayName("특별 할인율이 올바른지 테스트한다.")
+    @ValueSource(ints = {3, 10, 17, 24, 25, 31})
+    void discountRate(Integer day) {
+        List<String> orderList = List.of("타파스-1", "제로콜라-1", "아이스크림-2", "초코케이크-5");
+        Customer customer = new Customer(orderList, new DayOfVisit(day));
+        Long expectedDiscountPrice = 1_000L;
+
+        Long actualDiscountPrice = special.discountRate(customer);
+
+        Assertions.assertThat(actualDiscountPrice).isEqualTo(expectedDiscountPrice);
     }
 
     @ParameterizedTest
