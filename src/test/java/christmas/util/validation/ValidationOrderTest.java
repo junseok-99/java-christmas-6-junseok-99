@@ -53,7 +53,7 @@ class ValidationOrderTest {
     @ValueSource(strings = { "타파스-0", "티본스테이크--1", "초코케이크-0,제로콜라-0", "해산물파스타-0,샴페인--1"})
     void validateMenuCount(String orderString) {
         IllegalArgumentException invalidMenuCountException = assertThrows(IllegalArgumentException.class, () -> {
-            ValidationOrder.validateOrder(orderString);
+            ValidationOrder.validateMenuCount(orderString);
         });
         assertThat(invalidMenuCountException.getMessage())
                 .isEqualTo("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
