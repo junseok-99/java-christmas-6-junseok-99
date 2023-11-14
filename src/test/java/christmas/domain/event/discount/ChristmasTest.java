@@ -57,7 +57,7 @@ class ChristmasTest {
 
         Long actualDiscountPrice = christmas.discountRate(customer);
 
-        Assertions.assertThat(expectedDiscountPrice).isEqualTo(actualDiscountPrice);
+        Assertions.assertThat(actualDiscountPrice).isEqualTo(expectedDiscountPrice);
     }
 
     @ParameterizedTest
@@ -72,6 +72,6 @@ class ChristmasTest {
         Order order = customer.getOrder();
         Long actualDiscountPrice = order.getBeforeDiscountPrice() - order.getAfterDiscountPrice();
 
-        Assertions.assertThat(expectedDiscountPrice).isEqualTo(actualDiscountPrice);
+        Assertions.assertThat(actualDiscountPrice).isEqualTo(expectedDiscountPrice);
     }
 }
