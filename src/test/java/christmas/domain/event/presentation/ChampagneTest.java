@@ -46,6 +46,14 @@ class ChampagneTest {
     }
 
     @Test
+    @DisplayName("샴페인이 증정되는지 테스트한다.")
     void present() {
+        List<String> orderList = List.of("티본스테이크-3", "바비큐립-2", "해산물파스타-2", "크리스마스파스타-3", "아이스크림-2");
+        Customer customer = new Customer(orderList, new DayOfVisit(3));
+
+        champagne.present(customer);
+        String presentationNames = customer.getPresentationName();
+
+        assertTrue(presentationNames.contains("샴페인 1개"));
     }
 }
