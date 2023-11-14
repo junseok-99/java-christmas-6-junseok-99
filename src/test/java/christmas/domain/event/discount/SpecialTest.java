@@ -34,6 +34,18 @@ class SpecialTest {
     }
 
     @ParameterizedTest
+    @DisplayName("특별 할인이 미적용되는지 테스트한다.")
+    @ValueSource(ints = {1, 2, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 26, 27, 28, 29, 30})
+    void isSatisfyCondition_2(Integer day) {
+        List<String> orderList = List.of("타파스-1", "티본스테이크-1", "아이스크림-1");
+        Customer customer = new Customer(orderList, new DayOfVisit(day));
+
+        Boolean isSatisfyCondition = special.isSatisfyCondition(customer);
+
+        assertFalse(isSatisfyCondition);
+    }
+
+    @ParameterizedTest
     void discountRate() {
     }
 
