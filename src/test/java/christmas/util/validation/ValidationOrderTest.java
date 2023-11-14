@@ -1,11 +1,16 @@
 package christmas.util.validation;
 
 import christmas.repository.MenuRepository;
+import christmas.util.OrderIndices;
+import christmas.util.SplitTypes;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -63,8 +68,13 @@ class ValidationOrderTest {
     @DisplayName("주문이 중복되는지 테스트한다.")
     @ValueSource(strings = { "타파스-1,타파스-1", "샴페인-10,샴페인-2", "바비큐립-1,바비큐립-15", "제로콜라-9,제로콜라-2"})
     void validateDuplicateMenu(String orderString) {
+        List<String> orderList = Stream.of(orderString.split(SplitTypes.ORDER_REGEX)).toList();
+        String menu = orderList.get(0);
+        String otherMenu = orderList.get(1);
+
         IllegalArgumentException invalidDuplicateMenuException = assertThrows(IllegalArgumentException.class, () -> {
-            ValidationOrder.validateOrder(orderString);
+            ValidationOrder.validateDuplicateMenu(menu);
+            ValidationOrder.validateDuplicateMenu(otherMenu);
         });
         assertThat(invalidDuplicateMenuException.getMessage())
                 .isEqualTo("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
