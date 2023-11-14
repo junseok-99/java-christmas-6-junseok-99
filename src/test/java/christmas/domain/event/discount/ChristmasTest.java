@@ -2,6 +2,7 @@ package christmas.domain.event.discount;
 
 import christmas.domain.customer.Customer;
 import christmas.domain.dayofvisit.DayOfVisit;
+import christmas.domain.order.Order;
 import christmas.repository.MenuRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -60,7 +61,18 @@ class ChristmasTest {
         Assertions.assertThat(expectedDiscountPrice).isEqualTo(actualDiscountPrice);
     }
 
-    @Test
-    void discount() {
+    @ParameterizedTest
+    @DisplayName("크리스마스 디데이 할인금액이 올바르게 적용되는지 테스트한다.")
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25})
+    void discount(Integer day) {
+        List<String> orderList = List.of("타파스-1", "제로콜라-1", "티본스테이크-1", "샴페인-1");
+        Customer customer = new Customer(orderList, new DayOfVisit(day));
+        Long expectedDiscountPrice = christmas.discountRate(customer);
+
+        christmas.discount(customer);
+        Order order = customer.getOrder();
+        Long actualDiscountPrice = order.getBeforeDiscountPrice() - order.getAfterDiscountPrice();
+
+        Assertions.assertThat(expectedDiscountPrice).isEqualTo(actualDiscountPrice);
     }
 }
