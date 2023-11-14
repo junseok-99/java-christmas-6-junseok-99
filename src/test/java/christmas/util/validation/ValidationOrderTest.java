@@ -59,8 +59,15 @@ class ValidationOrderTest {
                 .isEqualTo("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 
-    @Test
-    void validateDuplicateMenu() {
+    @ParameterizedTest
+    @DisplayName("주문이 중복되는지 테스트한다.")
+    @ValueSource(strings = { "타파스-1,타파스-1", "샴페인-10,샴페인-2", "바비큐립-1,바비큐립-15", "제로콜라-9,제로콜라-2"})
+    void validateDuplicateMenu(String orderString) {
+        IllegalArgumentException invalidDuplicateMenuException = assertThrows(IllegalArgumentException.class, () -> {
+            ValidationOrder.validateOrder(orderString);
+        });
+        assertThat(invalidDuplicateMenuException.getMessage())
+                .isEqualTo("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 
     @Test
