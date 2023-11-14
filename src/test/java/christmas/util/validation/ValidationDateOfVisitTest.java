@@ -12,12 +12,21 @@ class ValidationDateOfVisitTest {
     @ParameterizedTest
     @DisplayName("유효하지 않은 예상 방문 날짜 인지 테스트한다.")
     @ValueSource(strings = { "a", "b3", "0", "32", "102394845", "1a3", " ", " 3 ", "3  "})
-    void validateDayOfVisit(String dayOfVisit) {
+    void validateInvalidDayOfVisit(String dayOfVisit) {
         IllegalArgumentException invalidDayOfVisitException = assertThrows(IllegalArgumentException.class, () -> {
             ValidationDayOfVisit.validateDayOfVisit(dayOfVisit);
         });
         assertThat(invalidDayOfVisitException.getMessage())
                 .isEqualTo("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+    }
+
+    @ParameterizedTest
+    @DisplayName("유효한 예상 방문 날짜 인지 테스트한다.")
+    @ValueSource(strings = { "1", "2", "4", "15", "17", "19", "20", "25", "31"})
+    void validateDayOfVisit(String dayOfVisit) {
+        assertDoesNotThrow(() -> {
+            ValidationDayOfVisit.validateDayOfVisit(dayOfVisit);
+        });
     }
 
     @ParameterizedTest
