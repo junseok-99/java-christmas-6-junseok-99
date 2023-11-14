@@ -47,7 +47,7 @@ class ChristmasTest {
     }
 
     @ParameterizedTest
-    @DisplayName("크리스마스 디데이 할인금액이 올바르게 적용되는지 테스트한다.")
+    @DisplayName("크리스마스 디데이 할인율이 올바른지 테스트한다.")
     @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25})
     void discountRate(Integer day) {
         List<String> orderList = List.of("타파스-1", "제로콜라-1", "티본스테이크-1", "샴페인-1");
@@ -61,7 +61,7 @@ class ChristmasTest {
     }
 
     @ParameterizedTest
-    @DisplayName("크리스마스 디데이 할인금액이 올바르게 적용되는지 테스트한다.")
+    @DisplayName("크리스마스 디데이 할인이 올바르게 적용되는지 테스트한다.")
     @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25})
     void discount(Integer day) {
         List<String> orderList = List.of("타파스-1", "제로콜라-1", "티본스테이크-1", "샴페인-1");
