@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ChristmasTest {
 
-    private final Christmas christmas;
+    private final Discount christmas;
 
     public ChristmasTest() {
         this.christmas = new Christmas();
