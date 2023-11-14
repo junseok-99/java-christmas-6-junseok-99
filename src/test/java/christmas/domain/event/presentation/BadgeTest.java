@@ -86,4 +86,18 @@ class BadgeTest {
 
         Assertions.assertThat(actualBadge).isEqualTo(expectedBadge);
     }
+
+    @Test
+    @DisplayName("산타 배지가 부여되는지 테스트한다.")
+    void present_Santa() {
+        List<String> orderList = List.of("초코케이크-5", "아이스크림-5");
+        Customer customer = new Customer(orderList, new DayOfVisit(4));
+        String expectedBadge = "산타";
+
+        discounts.discount(customer);
+        badge.present(customer);
+        String actualBadge = customer.getBadge();
+
+        Assertions.assertThat(actualBadge).isEqualTo(expectedBadge);
+    }
 }
