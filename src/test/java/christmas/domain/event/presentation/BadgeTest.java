@@ -4,6 +4,7 @@ import christmas.domain.customer.Customer;
 import christmas.domain.dayofvisit.DayOfVisit;
 import christmas.domain.event.discount.Discounts;
 import christmas.repository.MenuRepository;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -59,6 +60,16 @@ class BadgeTest {
     }
 
     @Test
+    @DisplayName("별 배지가 부여되는지 테스트한다.")
     void present() {
+        List<String> orderList = List.of("초코케이크-2", "아이스크림-2");
+        Customer customer = new Customer(orderList, new DayOfVisit(4));
+        String expectedBadge = "별";
+
+        discounts.discount(customer);
+        badge.present(customer);
+        String actualBadge = customer.getBadge();
+
+        Assertions.assertThat(actualBadge).isEqualTo(expectedBadge);
     }
 }
