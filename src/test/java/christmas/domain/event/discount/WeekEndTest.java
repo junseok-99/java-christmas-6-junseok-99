@@ -33,6 +33,18 @@ class WeekEndTest {
         assertTrue(isSatisfyCondition);
     }
 
+    @ParameterizedTest
+    @DisplayName("주말 할인이 미적용되는지 테스트한다.")
+    @ValueSource(ints = {3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 17, 18, 19, 20, 21, 24, 25, 26, 27, 28, 31})
+    void isSatisfyCondition_2(Integer day) {
+        List<String> orderList = List.of("티본스테이크-3", "바비큐립-2", "해산물파스타-2", "크리스마스파스타-3", "아이스크림-2");
+        Customer customer = new Customer(orderList, new DayOfVisit(day));
+
+        Boolean isSatisfyCondition = weekEnd.isSatisfyCondition(customer);
+
+        assertFalse(isSatisfyCondition);
+    }
+
     @Test
     void discountRate() {
     }
